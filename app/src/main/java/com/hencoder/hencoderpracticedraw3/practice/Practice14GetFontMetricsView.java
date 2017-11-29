@@ -27,11 +27,16 @@ public class Practice14GetFontMetricsView extends View {
         super(context, attrs, defStyleAttr);
     }
 
+    private final int yoff;
+
     {
         paint1.setStyle(Paint.Style.STROKE);
         paint1.setStrokeWidth(20);
         paint1.setColor(Color.parseColor("#E91E63"));
         paint2.setTextSize(160);
+
+        Paint.FontMetricsInt metricsInt=paint2.getFontMetricsInt();
+        yoff=(metricsInt.descent+metricsInt.ascent)/2;
     }
 
     @Override
@@ -44,7 +49,8 @@ public class Practice14GetFontMetricsView extends View {
         // 然后计算出文字的绘制位置，从而让文字上下居中
         // 这种居中算法的优点是，可以让不同的文字的 baseline 对齐
 
-        int middle = (top + bottom) / 2;
+        int middle = (top + bottom) / 2-yoff;
+
         canvas.drawText(texts[0], 100, middle, paint2);
         canvas.drawText(texts[1], 200, middle, paint2);
         canvas.drawText(texts[2], 300, middle, paint2);

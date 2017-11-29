@@ -1,5 +1,6 @@
 package com.hencoder.hencoderpracticedraw3.practice;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -27,6 +28,16 @@ public class Practice08SetTextSkewXView extends View {
         paint.setTextSize(60);
 
         // 使用 Paint.setTextSkewX() 来让文字倾斜
+        ValueAnimator animator = ValueAnimator.ofFloat(0, 1, -1, 1, 0,-0.5f);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                paint.setTextSkewX((Float) animation.getAnimatedValue());
+                invalidate();
+            }
+        });
+        animator.setDuration(5000);
+        animator.start();
     }
 
     @Override

@@ -40,7 +40,9 @@ public class Practice12MeasureTextView extends View {
         // 使用 Paint.measureText 测量出文字宽度，让文字可以相邻绘制
 
         canvas.drawText(text1, 50, 200, paint1);
-        canvas.drawText(text2, 50 + 100, 200, paint2);
-        canvas.drawText(text3, 50 + 200, 200, paint1);
+        float xoff=paint1.measureText(text1);
+        canvas.drawText(text2, 50 + xoff, 200, paint2);
+        float xoff2=paint2.measureText(text2);
+        canvas.drawText(text3, 50 + xoff+xoff2, 200, paint1);
     }
 }
